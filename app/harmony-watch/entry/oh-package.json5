@@ -1,0 +1,8 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Wanji watch entry module",
+  "main": "",
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -1,0 +1,66 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Xcode / Swift
+DerivedData/
+**/DerivedData/
+**/*.xcuserstate
+**/xcuserdata/
+app/wanji-ios/build/
+*.ipa
+*.dSYM.zip
+
+# Android / HarmonyOS
+.gradle/
+**/.gradle/
+.hvigor/
+**/.hvigor/
+local.properties
+**/build/
+*.apk
+*.aab
+*.hap
+
+# Runtime and test artifacts
+test-results/
+**/test-results/
+uploads/
+**/uploads/
+audio.bin
+job.json
+*.log
+*.db
+*.db-shm
+*.db-wal
+*.m4a
+*.aac
+*.wav
+*.mp3
+*.mp4
+
+# Python tooling
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Signing material
+*.p8
+*.p12
+*.cer
+*.mobileprovision
+*.keychain-db
+*.jks
+*.keystore
+*.pem
+*.key
+*.csr
+*.p7b
+*.app
+oh_modules/
+node_modules/
+**/Secrets.ets
+**/audit/

@@ -1,0 +1,344 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C74FEDC7AD524A74BD29407 /* BluetoothWatchSyncRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851DC4280B4C56DDE4018ED4 /* BluetoothWatchSyncRequester.swift */; };
+		0FF5CFD73DA4546A749C0014 /* MeetingNotesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A9AC434D572777EDA83D81 /* MeetingNotesAPI.swift */; };
+		1280BC8DE39666F5F84F618C /* BluetoothWatchReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3DE8A10C1044E6A89877A2 /* BluetoothWatchReceiver.swift */; };
+		58FE1E9D09BD90865956BAE8 /* WanjiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80F07394DB7A1C87290F81C /* WanjiApp.swift */; };
+		670FD96698DA52095719C3B5 /* AudioPlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F98E4F298C1B2F268D3DCF /* AudioPlaybackController.swift */; };
+		736F22F092FCEDE993BC14FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D853A6E573D30FA1C4EA51 /* Assets.xcassets */; };
+		87F42DF494DB33210E749C67 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D78C7A2A3EAB331CDB1C41 /* KeychainStore.swift */; };
+		899BD2F39D71A20675894CEC /* BluetoothWatchPullClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AE5424BB2E04773FDB104 /* BluetoothWatchPullClient.swift */; };
+		A712B8FDC0C9FF62F00427F9 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19146A27E8C0FEA47649080 /* AppSettings.swift */; };
+		D8AE658DECDA8496AA4741E0 /* AudioContainerDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1059B26BEC196241646E6106 /* AudioContainerDetector.swift */; };
+		FC8757EB460400AD348C49C1 /* RecordingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF929E6F4B8E5152119A9B6 /* RecordingStore.swift */; };
+		FD9EBC2514D83F74245A4601 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C55396FCBB3BBD2129E333 /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1059B26BEC196241646E6106 /* AudioContainerDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioContainerDetector.swift; sourceTree = "<group>"; };
+		25A9AC434D572777EDA83D81 /* MeetingNotesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingNotesAPI.swift; sourceTree = "<group>"; };
+		28C55396FCBB3BBD2129E333 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5A3DE8A10C1044E6A89877A2 /* BluetoothWatchReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothWatchReceiver.swift; sourceTree = "<group>"; };
+		765AE5424BB2E04773FDB104 /* BluetoothWatchPullClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothWatchPullClient.swift; sourceTree = "<group>"; };
+		851DC4280B4C56DDE4018ED4 /* BluetoothWatchSyncRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothWatchSyncRequester.swift; sourceTree = "<group>"; };
+		86D853A6E573D30FA1C4EA51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C8D78C7A2A3EAB331CDB1C41 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		D19146A27E8C0FEA47649080 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		D252666CA3059693F58FDB8F /* Wanji.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Wanji.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3F98E4F298C1B2F268D3DCF /* AudioPlaybackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlaybackController.swift; sourceTree = "<group>"; };
+		DFF929E6F4B8E5152119A9B6 /* RecordingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingStore.swift; sourceTree = "<group>"; };
+		F80F07394DB7A1C87290F81C /* WanjiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanjiApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		14FA20AE1D1FE63C7B6AC293 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D252666CA3059693F58FDB8F /* Wanji.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3CBB6CA0D0A7A46DD4C591D5 /* Wanji */ = {
+			isa = PBXGroup;
+			children = (
+				D19146A27E8C0FEA47649080 /* AppSettings.swift */,
+				86D853A6E573D30FA1C4EA51 /* Assets.xcassets */,
+				1059B26BEC196241646E6106 /* AudioContainerDetector.swift */,
+				D3F98E4F298C1B2F268D3DCF /* AudioPlaybackController.swift */,
+				765AE5424BB2E04773FDB104 /* BluetoothWatchPullClient.swift */,
+				5A3DE8A10C1044E6A89877A2 /* BluetoothWatchReceiver.swift */,
+				851DC4280B4C56DDE4018ED4 /* BluetoothWatchSyncRequester.swift */,
+				28C55396FCBB3BBD2129E333 /* ContentView.swift */,
+				C8D78C7A2A3EAB331CDB1C41 /* KeychainStore.swift */,
+				25A9AC434D572777EDA83D81 /* MeetingNotesAPI.swift */,
+				DFF929E6F4B8E5152119A9B6 /* RecordingStore.swift */,
+				F80F07394DB7A1C87290F81C /* WanjiApp.swift */,
+			);
+			path = Wanji;
+			sourceTree = "<group>";
+		};
+		A8A7DA1EF945657170A2379B = {
+			isa = PBXGroup;
+			children = (
+				3CBB6CA0D0A7A46DD4C591D5 /* Wanji */,
+				14FA20AE1D1FE63C7B6AC293 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7B28A34824CAF398FB68CC3E /* Wanji */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47952397DF680EC8821CF16A /* Build configuration list for PBXNativeTarget "Wanji" */;
+			buildPhases = (
+				E611E6CC3FAE03B48C398982 /* Sources */,
+				3688F12F160304E82082E041 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Wanji;
+			packageProductDependencies = (
+			);
+			productName = Wanji;
+			productReference = D252666CA3059693F58FDB8F /* Wanji.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D37166A2227E8308159FA757 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					7B28A34824CAF398FB68CC3E = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D53B537D2ED15750550AAC93 /* Build configuration list for PBXProject "Wanji" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A8A7DA1EF945657170A2379B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 14FA20AE1D1FE63C7B6AC293 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7B28A34824CAF398FB68CC3E /* Wanji */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3688F12F160304E82082E041 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				736F22F092FCEDE993BC14FA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E611E6CC3FAE03B48C398982 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A712B8FDC0C9FF62F00427F9 /* AppSettings.swift in Sources */,
+				D8AE658DECDA8496AA4741E0 /* AudioContainerDetector.swift in Sources */,
+				670FD96698DA52095719C3B5 /* AudioPlaybackController.swift in Sources */,
+				899BD2F39D71A20675894CEC /* BluetoothWatchPullClient.swift in Sources */,
+				1280BC8DE39666F5F84F618C /* BluetoothWatchReceiver.swift in Sources */,
+				0C74FEDC7AD524A74BD29407 /* BluetoothWatchSyncRequester.swift in Sources */,
+				FD9EBC2514D83F74245A4601 /* ContentView.swift in Sources */,
+				87F42DF494DB33210E749C67 /* KeychainStore.swift in Sources */,
+				0FF5CFD73DA4546A749C0014 /* MeetingNotesAPI.swift in Sources */,
+				FC8757EB460400AD348C49C1 /* RecordingStore.swift in Sources */,
+				58FE1E9D09BD90865956BAE8 /* WanjiApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		56911661B2A52DA335B31DB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.haowang.wanji;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		C27DAB86CAC33AE3D142AD72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.haowang.wanji;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		C8319B33FA16639799C29EB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E923C719E8527703D1FA90CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		47952397DF680EC8821CF16A /* Build configuration list for PBXNativeTarget "Wanji" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C27DAB86CAC33AE3D142AD72 /* Debug */,
+				56911661B2A52DA335B31DB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D53B537D2ED15750550AAC93 /* Build configuration list for PBXProject "Wanji" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8319B33FA16639799C29EB8 /* Debug */,
+				E923C719E8527703D1FA90CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D37166A2227E8308159FA757 /* Project object */;
+}

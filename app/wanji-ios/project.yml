@@ -1,0 +1,44 @@
+name: Wanji
+options:
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+targets:
+  Wanji:
+    type: application
+    platform: iOS
+    sources:
+      - path: Wanji
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: 腕记
+        CFBundleIconName: AppIcon
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "259"
+        CFBundleURLTypes:
+          - CFBundleURLName: com.haowang.wanji.configure
+            CFBundleURLSchemes:
+              - wanji
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIBackgroundModes:
+          - audio
+          - bluetooth-central
+        ITSAppUsesNonExemptEncryption: false
+        NSBluetoothAlwaysUsageDescription: 允许腕记通过蓝牙接收手表端录音
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.haowang.wanji
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: false
+schemes:
+  Wanji:
+    build:
+      targets:
+        Wanji: all
+    run:
+      config: Debug

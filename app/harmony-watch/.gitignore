@@ -1,0 +1,14 @@
+/node_modules
+/oh_modules
+/.hvigor
+/.idea
+/.clangd
+/.clang-format
+/.clang-tidy
+**/build/
+/local.properties
+**/oh_modules
+entry/src/main/ets/config/Secrets.ets
+*.har
+*.hap
+.DS_Store

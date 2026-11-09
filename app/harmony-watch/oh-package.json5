@@ -1,0 +1,8 @@
+{
+  "modelVersion": "6.1.1",
+  "name": "wanji",
+  "version": "1.0.0",
+  "description": "Wanji watch client for Wanji on iOS and private ASR notes",
+  "dependencies": {},
+  "devDependencies": {}
+}

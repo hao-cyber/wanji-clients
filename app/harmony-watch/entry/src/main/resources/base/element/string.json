@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "轻点录音，通过蓝牙安全传到手机腕记"
+    },
+    {
+      "name": "ability_label",
+      "value": "腕记"
+    },
+    {
+      "name": "mic_reason",
+      "value": "仅在你主动录音时采集声音并保存在本地"
+    },
+    {
+      "name": "bluetooth_reason",
+      "value": "通过蓝牙把手表录音传到手机腕记"
+    },
+    {
+      "name": "bg_reason",
+      "value": "息屏后继续录音"
+    }
+  ]
+}
