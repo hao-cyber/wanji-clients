@@ -76,6 +76,7 @@ final class BluetoothWatchSyncAdvertiser {
     private BluetoothGattCharacteristic dataCharacteristic;
     private BluetoothGattCharacteristic ackCharacteristic;
     private android.bluetooth.BluetoothDevice notifyDevice;
+    private final BluetoothAccessPolicy audioAccess = new BluetoothAccessPolicy();
     private byte[] selectedAudio;
     private AudioItem selectedItem;
     private String selectedId = "";
@@ -232,6 +233,7 @@ final class BluetoothWatchSyncAdvertiser {
         controlCharacteristic = null;
         ackCharacteristic = null;
         notifyDevice = null;
+        audioAccess.clear();
         selectedAudio = null;
         selectedItem = null;
         selectedId = "";
@@ -247,6 +249,18 @@ final class BluetoothWatchSyncAdvertiser {
         connectedAtMs = 0;
         notifyCreditEnd = -1;
         resetNotifyRetry();
+    }
+
+    private static String peerAddress(android.bluetooth.BluetoothDevice device) {
+        if (device == null) {
+            return "";
+        }
+        try {
+            String address = device.getAddress();
+            return address == null ? "" : address;
+        } catch (SecurityException ignored) {
+            return "";
+        }
     }
 
     private int maxReadPayloadBytes() {
@@ -390,7 +404,7 @@ final class BluetoothWatchSyncAdvertiser {
         }
     }
 
-    private int handlePullControl(byte[] value) {
+    private int handlePullControl(android.bluetooth.BluetoothDevice device, byte[] value) {
         try {
             PullControlRequest request = parsePullControl(value);
             String token = request.token;
@@ -408,6 +422,10 @@ final class BluetoothWatchSyncAdvertiser {
                 Log.w(TAG, "watch pull merged control rejected missing id=" + id
                         + " fullId=" + fullId);
                 return BluetoothGatt.GATT_INVALID_ATTRIBUTE_LENGTH;
+            }
+            if (!audioAccess.authenticate(peerAddress(device),
+                    BluetoothBindingStore.phoneToken(appContext), token)) {
+                return BluetoothGatt.GATT_INSUFFICIENT_AUTHENTICATION;
             }
             if (!fullId.equals(selectedId)) {
                 selectedAudio = null;
@@ -686,8 +704,10 @@ final class BluetoothWatchSyncAdvertiser {
     }
 
     private void notifyNextChunk() {
-        if (!streaming || server == null || notifyDevice == null
-                || dataCharacteristic == null) {
+        android.bluetooth.BluetoothDevice recipient = notifyDevice;
+        if (!streaming || server == null || recipient == null
+                || dataCharacteristic == null
+                || !audioAccess.canReadAudio(peerAddress(recipient))) {
             return;
         }
         if (selectedAudio == null) {
@@ -719,7 +739,7 @@ final class BluetoothWatchSyncAdvertiser {
         System.arraycopy(selectedAudio, start, chunk, 0, chunk.length);
         byte[] frame = notifyFrame(start, chunk);
         dataCharacteristic.setValue(frame);
-        boolean queued = server.notifyCharacteristicChanged(notifyDevice, dataCharacteristic, false);
+        boolean queued = server.notifyCharacteristicChanged(recipient, dataCharacteristic, false);
         if (queued) {
             selectedOffset = end;
             lastNotifyStart = start;
@@ -1059,12 +1079,14 @@ final class BluetoothWatchSyncAdvertiser {
                                             int newState) {
             Log.i(TAG, "watch sync connection state=" + newState + " status=" + status);
             if (newState == BluetoothProfile.STATE_CONNECTED) {
+                audioAccess.disconnect(peerAddress(device));
                 advertising = false;
                 main.removeCallbacks(rebuildGattServer);
                 notifyDevice = device;
                 connectedAtMs = System.currentTimeMillis();
                 currentMtu = DEFAULT_ATT_MTU;
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                audioAccess.disconnect(peerAddress(device));
                 if (notifyDevice != null && notifyDevice.equals(device)) {
                     notifyDevice = null;
                     connectedAtMs = 0;
@@ -1112,8 +1134,13 @@ final class BluetoothWatchSyncAdvertiser {
                         + " bytes=" + responseValue.length
                         + " total=" + payload.length);
             } else if (PULL_DATA_UUID.equals(uuid)) {
-                responseValue = dataPayload(offset);
-                characteristic.setValue(dataReadWindow == null ? responseValue : dataReadWindow);
+                if (!audioAccess.canReadAudio(peerAddress(device))) {
+                    response = BluetoothGatt.GATT_INSUFFICIENT_AUTHENTICATION;
+                    responseValue = new byte[0];
+                } else {
+                    responseValue = dataPayload(offset);
+                    characteristic.setValue(dataReadWindow == null ? responseValue : dataReadWindow);
+                }
             } else {
                 response = BluetoothGatt.GATT_REQUEST_NOT_SUPPORTED;
                 responseValue = new byte[0];
@@ -1144,7 +1171,7 @@ final class BluetoothWatchSyncAdvertiser {
                     + " offset=" + offset
                     + " bytes=" + length);
             if (PULL_CONTROL_UUID.equals(characteristic.getUuid())) {
-                response = handlePullControl(value);
+                response = handlePullControl(device, value);
             } else if (PULL_ACK_UUID.equals(characteristic.getUuid())) {
                 response = handlePullAck(value);
             } else if (!WANJI_WATCH_SYNC_COMMAND_UUID.equals(characteristic.getUuid())) {
@@ -1225,7 +1252,8 @@ final class BluetoothWatchSyncAdvertiser {
                     resetNotifyRetry();
                 }
                 Log.i(TAG, "watch pull merged notify enabled=" + notifyEnabled);
-                if (notifyEnabled && selectedAudio != null && selectedOffset < selectedAudio.length) {
+                if (notifyEnabled && audioAccess.canReadAudio(peerAddress(device))
+                        && selectedAudio != null && selectedOffset < selectedAudio.length) {
                     streaming = true;
                     scheduleNotifyNextChunk(0);
                 } else if (notifyEnabled && streaming && selectedItem != null) {

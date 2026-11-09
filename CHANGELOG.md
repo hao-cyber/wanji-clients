@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.1.0-alpha.2 — 2026-11-09
+
+- Require authentication on the current Android BLE connection before sending
+  recording bytes through reads or notifications, including prewarmed audio.
+- Reject remote replacement of an existing Android watch binding credential;
+  repeated binding with the same credential remains supported.
+- Preview external iPhone configuration links and require confirmation before
+  changing the upload destination or saved credential.
+- Add authorization and side-effect regression tests. These changes do not
+  modify BLE UUIDs, wire frames, acknowledgements, or recording deletion rules.
+
+This updates source code only. Installed apps require rebuilding and updating.
+Physical-device BLE acceptance and encrypted pairing remain outstanding; see
+[privacy and pairing boundaries](docs/PRIVACY.md) and [validation status](docs/STATUS.md).
+
 ## v0.1.0-alpha.1 — 2026-11-09
 
 Initial public client source release:

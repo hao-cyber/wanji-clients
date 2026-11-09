@@ -873,6 +873,21 @@ enum MeetingNotesAPI {
 }
 
 enum BackendConfigurationLink {
+    struct Configuration {
+        let serverURL: String
+        fileprivate let token: String
+
+        fileprivate init(serverURL: String, token: String) {
+            self.serverURL = serverURL
+            self.token = token
+        }
+    }
+
+    enum PreviewResult {
+        case ready(Configuration)
+        case rejected(ApplyResult)
+    }
+
     enum ApplyResult: Equatable {
         case applied(serverURL: String)
         case ignored
@@ -908,14 +923,21 @@ enum BackendConfigurationLink {
     }
 
     static func apply(_ url: URL) -> ApplyResult {
-        guard url.scheme?.lowercased() == "wanji" else { return .ignored }
+        switch preview(url) {
+        case .ready(let configuration): return apply(configuration)
+        case .rejected(let result): return result
+        }
+    }
+
+    static func preview(_ url: URL) -> PreviewResult {
+        guard url.scheme?.lowercased() == "wanji" else { return .rejected(.ignored) }
         let host = url.host?.lowercased()
         let path = url.path.trimmingCharacters(in: CharacterSet(charactersIn: "/")).lowercased()
         guard host == "configure" || path == "configure" else {
-            return .invalid("配置链接不可用")
+            return .rejected(.invalid("配置链接不可用"))
         }
         guard let comps = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
-            return .invalid("配置链接格式不正确")
+            return .rejected(.invalid("配置链接格式不正确"))
         }
         let items = comps.queryItems ?? []
         let server = value(named: "server", in: items)
@@ -930,19 +952,24 @@ enum BackendConfigurationLink {
         case .ready:
             break
         case .missingServer:
-            return .invalid("配置链接缺少服务器地址")
+            return .rejected(.invalid("配置链接缺少服务器地址"))
         case .missingToken:
-            return .invalid("配置链接缺少 API Token")
+            return .rejected(.invalid("配置链接缺少 API Token"))
         case .invalidURL:
-            return .invalid("配置链接里的服务器地址格式不正确")
+            return .rejected(.invalid("配置链接里的服务器地址格式不正确"))
         case .insecureURL:
-            return .invalid("配置链接里的服务器地址需要使用 HTTPS")
+            return .rejected(.invalid("配置链接里的服务器地址需要使用 HTTPS"))
         }
-        guard KeychainStore.setToken(token.trimmingCharacters(in: .whitespacesAndNewlines)) else {
+        return .ready(Configuration(serverURL: normalizedServer,
+                                    token: token.trimmingCharacters(in: .whitespacesAndNewlines)))
+    }
+
+    static func apply(_ configuration: Configuration) -> ApplyResult {
+        guard KeychainStore.setToken(configuration.token) else {
             return .keychainFailed
         }
-        UserDefaults.standard.set(normalizedServer, forKey: AppSettings.serverURLKey)
-        return .applied(serverURL: normalizedServer)
+        UserDefaults.standard.set(configuration.serverURL, forKey: AppSettings.serverURLKey)
+        return .applied(serverURL: configuration.serverURL)
     }
 
     static func apply(_ text: String) -> ApplyResult {

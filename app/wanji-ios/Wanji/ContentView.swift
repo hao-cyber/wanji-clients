@@ -83,6 +83,8 @@ struct ContentView: View {
     @AppStorage(AppSettings.watchBindingConfirmedKey) private var watchBindingConfirmed = false
     @State private var showingImporter = false
     @State private var showingSettings = false
+    @State private var pendingConfiguration: BackendConfigurationLink.Configuration?
+    @State private var showingConfigurationConfirmation = false
     @State private var selectedDetail: SelectedRecordingDetail?
     @State private var copiedValue: String?
     @State private var configured = false
@@ -245,6 +247,19 @@ struct ContentView: View {
             .onOpenURL { url in
                 handleConfigurationURL(url)
             }
+            .alert("导入后端配置？",
+                   isPresented: $showingConfigurationConfirmation,
+                   presenting: pendingConfiguration) { configuration in
+                Button("确认导入") {
+                    applyConfigurationResult(BackendConfigurationLink.apply(configuration))
+                    pendingConfiguration = nil
+                }
+                Button("取消", role: .cancel) {
+                    pendingConfiguration = nil
+                }
+            } message: { configuration in
+                Text("服务器：\(configuration.serverURL)\n以后提交的录音将发送到此服务器。确认信任该服务器后再导入。")
+            }
             .onDisappear {
                 automaticPullWorkItem?.cancel()
                 automaticPullWorkItem = nil
@@ -270,8 +285,14 @@ struct ContentView: View {
     }
 
     private func handleConfigurationURL(_ url: URL) {
-        let result = BackendConfigurationLink.apply(url)
-        applyConfigurationResult(result)
+        switch BackendConfigurationLink.preview(url) {
+        case .ready(let configuration):
+            guard !showingConfigurationConfirmation else { return }
+            pendingConfiguration = configuration
+            showingConfigurationConfirmation = true
+        case .rejected(let result):
+            applyConfigurationResult(result)
+        }
     }
 
     private func applyConfigurationResult(_ result: BackendConfigurationLink.ApplyResult) {

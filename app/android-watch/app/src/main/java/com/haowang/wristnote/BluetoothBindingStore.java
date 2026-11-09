@@ -28,7 +28,8 @@ final class BluetoothBindingStore {
 
     static boolean savePhoneToken(Context context, String token) {
         String normalized = token == null ? "" : token.trim();
-        if (!isValidToken(normalized)) {
+        if (!isValidToken(normalized)
+                || !BluetoothAccessPolicy.canAcceptBinding(phoneToken(context), normalized)) {
             return false;
         }
         SharedPreferences prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
